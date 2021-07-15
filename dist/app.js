@@ -11,11 +11,8 @@ const app = express_1.default();
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());
 schemas_1.connect();
-app.get('/', (req, res, next) => {
-    res.send("hello");
-});
 // APIs
-app.use("api/book", [book_1.bookRouter]);
+app.use("/api/book", [book_1.bookRouter]);
 app.listen(port, () => {
     console.log("listening at http://localhost:5000");
 });

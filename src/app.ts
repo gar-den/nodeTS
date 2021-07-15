@@ -10,10 +10,6 @@ app.use(express.json());
 
 connect();
 
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-    res.send("hello");
-});
-
 // APIs
 app.use("/api/book", [bookRouter]);
 
