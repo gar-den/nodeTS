@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const url = "mongodb://localhost:27017/tstest"
+const url: string = "mongodb://localhost:27017/tstest"
 
 const connect = (): void => {
     mongoose.connect(url, {
