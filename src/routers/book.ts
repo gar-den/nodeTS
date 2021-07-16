@@ -1,72 +1,81 @@
 // basic CRUD
 
-import express, {Request, Response, NextFunction, Router} from 'express';
-import Books from '../schemas/book';
+import express, { Request, Response, NextFunction, Router } from "express";
+import Books from "../schemas/book";
 
-const bookRouter:Router = express.Router();
+const bookRouter: Router = express.Router();
 
 // create one
-bookRouter.post("/", async(req, res) => {  // parameters are mapped as the type formations are
-    const { title, author, price }: {title: string, author: string, price: number} = req.body;
+bookRouter.post("/", async (req, res) => {
+  // parameters are mapped as the type formations are
+  const {
+    title,
+    author,
+    price,
+  }: { title: string; author: string; price: number } = req.body;
 
-    try {
-        await Books.create({ title, author, price });
+  try {
+    await Books.create({ title, author, price });
 
-        res.json({ message: "success" });
-    } catch(err) {
-        res.json({ message: "fail" });
-    }
-})
+    res.json({ message: "success" });
+  } catch (err) {
+    res.json({ message: "fail" });
+  }
+});
 
 // read all
-bookRouter.get('/', async(req, res) => {
-    try {
-        const books: any = await Books.find({ });
+bookRouter.get("/", async (req, res) => {
+  try {
+    const books: any = await Books.find({});
 
-        res.json({ message: "success", books: books });
-    } catch(err) {
-        res.json({ message: "fail" });
-    }
-})
+    res.json({ message: "success", books: books });
+  } catch (err) {
+    res.json({ message: "fail" });
+  }
+});
 
 // read one
-bookRouter.get('/:bookId', async(req, res) => {
-    const bookId: string = req.params.bookId;
+bookRouter.get("/:bookId", async (req, res) => {
+  const bookId: string = req.params.bookId;
 
-    try {
-        const book: any = await Books.find({ _id: bookId });
+  try {
+    const book: any = await Books.find({ _id: bookId });
 
-        res.json({ message: "success", book: book });
-    } catch(err) {
-        res.json({ message: "fail" });
-    }
+    res.json({ message: "success", book: book });
+  } catch (err) {
+    res.json({ message: "fail" });
+  }
 });
 
 // modify one
-bookRouter.put('/:bookId', async(req, res) => {
-    const bookId: string = req.params.bookId;
-    const { title, author, price }: {title: string, author: string, price: number} = req.body;
+bookRouter.put("/:bookId", async (req, res) => {
+  const bookId: string = req.params.bookId;
+  const {
+    title,
+    author,
+    price,
+  }: { title: string; author: string; price: number } = req.body;
 
-    try {
-        await Books.findOneAndUpdate({ _id: bookId }, { title, author, price });
+  try {
+    await Books.findOneAndUpdate({ _id: bookId }, { title, author, price });
 
-        res.json({ message: "success" });
-    } catch(err) {
-        res.json({ message: "fail" });
-    }
+    res.json({ message: "success" });
+  } catch (err) {
+    res.json({ message: "fail" });
+  }
 });
 
 // delete one
-bookRouter.delete('/:bookId', async(req, res) => {
-    const bookId: string = req.params.bookId;
-    
-    try {
-        await Books.findOneAndDelete({ _id: bookId });
+bookRouter.delete("/:bookId", async (req, res) => {
+  const bookId: string = req.params.bookId;
 
-        res.json({ message: "success" });
-    } catch (err) {
-        res.json({ message: "fail" });
-    }
-})
+  try {
+    await Books.findOneAndDelete({ _id: bookId });
+
+    res.json({ message: "success" });
+  } catch (err) {
+    res.json({ message: "fail" });
+  }
+});
 
 export { bookRouter };
