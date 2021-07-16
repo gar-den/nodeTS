@@ -3,7 +3,7 @@
 import express, { Request, Response, NextFunction, Router } from "express";
 import Books from "../schemas/book";
 
-const bookRouter: Router = express.Router();
+const bookRouter = express.Router();
 
 // create one
 bookRouter.post("/", async (req, res) => {
@@ -26,7 +26,7 @@ bookRouter.post("/", async (req, res) => {
 // read all
 bookRouter.get("/", async (req, res) => {
   try {
-    const books: any = await Books.find({});
+    const books = await Books.find({}); // do not use "any" type!
 
     res.json({ message: "success", books: books });
   } catch (err) {
@@ -36,10 +36,10 @@ bookRouter.get("/", async (req, res) => {
 
 // read one
 bookRouter.get("/:bookId", async (req, res) => {
-  const bookId: string = req.params.bookId;
+  const bookId = req.params.bookId;
 
   try {
-    const book: any = await Books.find({ _id: bookId });
+    const book = await Books.find({ _id: bookId });
 
     res.json({ message: "success", book: book });
   } catch (err) {
@@ -49,7 +49,7 @@ bookRouter.get("/:bookId", async (req, res) => {
 
 // modify one
 bookRouter.put("/:bookId", async (req, res) => {
-  const bookId: string = req.params.bookId;
+  const bookId = req.params.bookId;
   const {
     title,
     author,
@@ -67,7 +67,7 @@ bookRouter.put("/:bookId", async (req, res) => {
 
 // delete one
 bookRouter.delete("/:bookId", async (req, res) => {
-  const bookId: string = req.params.bookId;
+  const bookId = req.params.bookId;
 
   try {
     await Books.findOneAndDelete({ _id: bookId });
