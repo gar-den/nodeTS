@@ -6,7 +6,7 @@ import Books from '../schemas/book';
 const bookRouter:Router = express.Router();
 
 // create one
-bookRouter.post("/", async(req:Request, res: Response) => {
+bookRouter.post("/", async(req, res) => {  // parameters are mapped as the type formations are
     const { title, author, price }: {title: string, author: string, price: number} = req.body;
 
     try {
@@ -19,7 +19,7 @@ bookRouter.post("/", async(req:Request, res: Response) => {
 })
 
 // read all
-bookRouter.get('/', async(req: Request, res: Response) => {
+bookRouter.get('/', async(req, res) => {
     try {
         const books: any = await Books.find({ });
 
@@ -30,7 +30,7 @@ bookRouter.get('/', async(req: Request, res: Response) => {
 })
 
 // read one
-bookRouter.get('/:bookId', async(req: Request, res: Response) => {
+bookRouter.get('/:bookId', async(req, res) => {
     const bookId: string = req.params.bookId;
 
     try {
@@ -43,7 +43,7 @@ bookRouter.get('/:bookId', async(req: Request, res: Response) => {
 });
 
 // modify one
-bookRouter.put('/:bookId', async(req: Request, res: Response) => {
+bookRouter.put('/:bookId', async(req, res) => {
     const bookId: string = req.params.bookId;
     const { title, author, price }: {title: string, author: string, price: number} = req.body;
 
@@ -57,7 +57,7 @@ bookRouter.put('/:bookId', async(req: Request, res: Response) => {
 });
 
 // delete one
-bookRouter.delete('/:bookId', async(req: Request, res: Response) => {
+bookRouter.delete('/:bookId', async(req, res) => {
     const bookId: string = req.params.bookId;
     
     try {
