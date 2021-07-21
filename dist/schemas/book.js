@@ -25,4 +25,4 @@ const BookSchema = new mongoose_1.Schema({
     author: String,
     price: Number,
 });
-exports.default = mongoose_1.default.model('Books', BookSchema);
+exports.default = mongoose_1.default.model("Books", BookSchema);
