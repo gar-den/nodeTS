@@ -1,4 +1,5 @@
 "use strict";
+// basic CRUD
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -19,7 +20,8 @@ const bookRouter = express_1.default.Router();
 exports.bookRouter = bookRouter;
 // create one
 bookRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { title, author, price } = req.body;
+    // parameters are mapped as the type formations are
+    const { title, author, price, } = req.body;
     try {
         yield book_1.default.create({ title, author, price });
         res.json({ message: "success" });
@@ -29,9 +31,9 @@ bookRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 }));
 // read all
-bookRouter.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+bookRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const books = yield book_1.default.find({});
+        const books = yield book_1.default.find({}); // do not use "any" type!
         res.json({ message: "success", books: books });
     }
     catch (err) {
@@ -39,7 +41,7 @@ bookRouter.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 }));
 // read one
-bookRouter.get('/:bookId', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+bookRouter.get("/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bookId = req.params.bookId;
     try {
         const book = yield book_1.default.find({ _id: bookId });
@@ -50,9 +52,9 @@ bookRouter.get('/:bookId', (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 }));
 // modify one
-bookRouter.put('/:bookId', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+bookRouter.put("/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bookId = req.params.bookId;
-    const { title, author, price } = req.body;
+    const { title, author, price, } = req.body;
     try {
         yield book_1.default.findOneAndUpdate({ _id: bookId }, { title, author, price });
         res.json({ message: "success" });
@@ -62,7 +64,7 @@ bookRouter.put('/:bookId', (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 }));
 // delete one
-bookRouter.delete('/:bookId', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+bookRouter.delete("/:bookId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bookId = req.params.bookId;
     try {
         yield book_1.default.findOneAndDelete({ _id: bookId });

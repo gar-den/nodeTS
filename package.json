@@ -6,13 +6,16 @@
     "start": "node dist/app.js",
     "dev": "tsc && nodemon src/app.ts",
     "build": "tsc -p .",
-    "prettify": "prettier --write src/*.ts src/**/*.ts"
+    "prettify": "prettier --write src/*.ts src/**/*.ts",
+    "start-gendoc": "node ./src/swagger.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.13.2"
+    "mongoose": "^5.13.2",
+    "swagger-autogen": "^2.11.0",
+    "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
@@ -22,5 +25,13 @@
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5"
   },
-  "description": "study node js + typescript"
+  "description": "study node js + typescript",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gar-den/nodeTS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gar-den/nodeTS/issues"
+  },
+  "homepage": "https://github.com/gar-den/nodeTS#readme"
 }
