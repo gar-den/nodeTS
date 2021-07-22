@@ -9,6 +9,8 @@ const app = express(); // variable automatically inferred as Application
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+
+// DB
 connect();
 
 // APIs

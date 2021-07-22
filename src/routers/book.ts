@@ -1,5 +1,3 @@
-// basic CRUD
-
 import express, { Request, Response, NextFunction, Router } from "express";
 import Books from "../schemas/book";
 
